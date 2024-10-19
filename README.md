@@ -1,6 +1,6 @@
 
 ## Simple Code
-```
+```cpp
     struct buy
     {
         std::string brok;
