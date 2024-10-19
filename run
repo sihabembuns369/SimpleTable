@@ -1,0 +1,36 @@
+#! /bin/bash
+
+s="\033[s"
+u="\033[u"
+txt_1="\t\t\t  \e[47;33m \e[1;32m \e[31m  WADUH ERROR BRO , Wah Gak bener nih ngodingnya 😂 \e[0m\n"
+txt_2="\t\t\t  \e[41;33m \e[1;32m \e[31m  WADUH ERROR BRO , Wah Gak bener nih ngodingnya 😜 \e[0m\n"
+
+FILENAME="main.cpp"
+OUTPUT=$(basename "$FILENAME" .cpp)
+
+g++ -Wall -g  -o $OUTPUT $FILENAME table.cpp
+
+
+if [ "$?" -ne 0 ]; then
+{
+    # echo -e "\t\t\t  \e[47;33m \e[1;32m \e[31m  WADUH ERROR BRO \e[0m\n"
+    echo -e "\n enter CTRL + C to exit:\n"
+        while [ : ]
+        do
+            eval echo -ne '$s $txt_1 $u'
+            sleep 0.3
+            eval echo -ne '$s $txt_2 $u'
+            sleep 0.3
+     done
+    trap 'echo "Error pada baris $LINENO"' ERR
+    
+}
+    else {
+    clear
+    ./$OUTPUT -csv $HOME/OLTS_ITCH/DT241002.csv
+    }
+fi
+
+
+
+
